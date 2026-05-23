@@ -20,14 +20,20 @@ public class Secretaries extends Users{
 
     List<Students> StudentsList;
 
-    public Secretaries(String UserName, String Name, String Surname, String Department,String email , String PhoneNumber ) {
+    public Secretaries(String UserName, String Name, String Surname, String Department,String password,String email , String PhoneNumber ) {
         super(UserName, Name, Surname, Department);
+        this.password = password;
         this.email  = email;
         this.PhoneNumber = PhoneNumber ;
         this.StudentsList = new ArrayList<>();
     }
 
 //getters
+
+    public String getPassword() {
+        return password;
+    }
+
     public String getEmail() {
         return email;
     }
