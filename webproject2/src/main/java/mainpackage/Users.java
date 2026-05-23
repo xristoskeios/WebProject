@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name= "users")
-@Inheritance(strategy = InheritanceType.Joined)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Users {
 
     @Id
@@ -18,6 +18,10 @@ public class Users {
 
     @Transient
     private static int UsersCounter = 0;
+
+    public Users() {
+    }
+
 
     public Users(String UserName, String Name, String Surname, String Department)
     {

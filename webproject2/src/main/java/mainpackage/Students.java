@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 public class Students extends Users{
 
     @Column(name = "registration_number", unique=true, nullable = false)
-    private final int registrationNumber;
+    private int registrationNumber;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -24,9 +24,17 @@ public class Students extends Users{
     @Column(name = "semester")
     private int Semester;
 
-    private List<Grades> ListOfGrades ;
+    @ManyToMany
+    @JoinTable(
+            name = "student_courses",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private List<Courses> courses = new ArrayList<>();
 
-    public Students() {}
+    public Students() {
+        super();
+    }
 
     public Students (String UserName , String Name , String Surname , String Department,int registrationNumber, String password, String Email, int StudingYear ,int  Semester){
         super(UserName,Name,Surname,Department);
@@ -46,7 +54,7 @@ public class Students extends Users{
         this.registrationNumber = registrationNumber;
         this.password = password;
         this.Email = Email;
-        this.ListOfGrades = new ArrayList<>();
+       // this.ListOfGrades = new ArrayList<>();
         this.StudingYear = StudingYear;
         this.Semester = Semester;
     }
